@@ -4,6 +4,9 @@
 import os
 import time
 import sys
+sys.path.append('/home/bayscideaswaimea/.local/bin/scapy')
+sys.path.append('/home/bayscideaswaimea/.local/lib/python3.5/site-packages')
+print(sys.path)
 import sqlite3
 import threading
 import logging
@@ -69,15 +72,6 @@ def statusWidget(devices):
     sys.stdout.write("Devices found: [" + str(devices) + "]")
     restart_line()
     sys.stdout.flush()
-
-print(" ____  ____   ___  ____    ___ _________  ____ _____ _____  ___ ____    \n" +
-      "|    \|    \ /   \|    \  /  _/ ___|    \|    |     |     |/  _|    \   \n" +
-      "|  o  |  D  |     |  o  )/  [(   \_|  _  ||  ||   __|   __/  [_|  D  )  \n" +
-      "|   _/|    /|  O  |     |    _\__  |  |  ||  ||  |_ |  |_|    _|    /   \n" +
-      "|  |  |    \|     |  O  |   [_/  \ |  |  ||  ||   _]|   _|   [_|    \   \n" +
-      "|  |  |  .  |     |     |     \    |  |  ||  ||  |  |  | |     |  .  \  \n" +
-      "|__|  |__|\_|\___/|_____|_____|\___|__|__|____|__|  |__| |_____|__|\__| \n" +
-      "                                       v2.1 by David Schütz (@xdavidhu) \n")
 
 print("[W] Make sure to use an interface in monitor mode!\n")
 
@@ -145,7 +139,7 @@ def sniffer():
         if not alreadyStopping:
             try:
                 debug("[SNIFFER] HI I STARTED TO SNIFF")
-                sniff(iface=monitor_iface, prn=PacketHandler)
+                sniff(iface=monitor_iface, prn=PacketHandler, store=0)
             except:
                 print("[!] An error occurred. Debug:")
                 print(traceback.format_exc())
